@@ -76,10 +76,13 @@ class BingoScreenState extends State<BingoScreen> {
                 setState(() {});
               },
               autofocus: true,
-              child: Text(
-                buttonTitle,
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 48),
+              child: Semantics(
+                liveRegion: true,
+                child: Text(
+                  buttonTitle,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontSize: 48),
+                ),
               ),
             ),
           ),
@@ -93,7 +96,7 @@ class BingoScreenState extends State<BingoScreen> {
                   )
                 : ListViewBuilder(
                     itemBuilder: (context, index) {
-                      final number = calledNumbers[index];
+                      final number = calledNumbers.reversed.toList()[index];
                       return ListTile(
                         title: Text(
                           number.toString(),
@@ -103,7 +106,6 @@ class BingoScreenState extends State<BingoScreen> {
                       );
                     },
                     itemCount: calledNumbers.length,
-                    reverse: true,
                   ),
           )
         ],
